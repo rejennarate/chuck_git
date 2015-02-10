@@ -18,8 +18,6 @@ def file_input
 end
 
 # get usernames from a csv
-# even though right now each username will be a separate line,
-# maybe someday we will add some parameters and separate by commas.
 def load_users 
 	File.readlines(file_input).each do |line|
 		usernames = line.split(",")
