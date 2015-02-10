@@ -1,6 +1,5 @@
 #!/usr/bin/ruby
 
-
 require 'rubygems'
 require 'mechanize'
 
@@ -33,12 +32,11 @@ def commits(date)
   # get github url and substitute in a username and date
   load_users.each do |username|
     page = agent.get("http://github.com/#{username.chomp}?tab=contributions&from=#{date}")
- 
 	  # well this is super bold, let's hope the structure of this page never changes at all
 	  # daily activity is in array index 22
 	  green_bar = page.links[22].to_s
 	  if green_bar.include?('Pushed')
-	  	puts "#{username} #{green_bar}"
+	  	puts "#{username} #{green_bar.strip}"
 	  else
 	  	puts "#{username} did not push any commits. Perhaps they need...motivation."
 	  end
